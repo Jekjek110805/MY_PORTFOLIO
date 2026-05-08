@@ -177,7 +177,8 @@ const ServiceAccordion = () => {
     { id: 0, title: "Branding", desc: "Crafting unique visual identities that resonate with your audience and stand the test of time." },
     { id: 1, title: "Design", desc: "Efficient, knowledgeable, and smooth experience. Highly recommended for complex UI/UX challenges." },
     { id: 2, title: "Marketing", desc: "Strategic digital marketing campaigns designed to drive growth and maximize ROI." },
-    { id: 3, title: "Code", desc: "Clean, performant front-end development using the latest modern frameworks and best practices." }
+    { id: 3, title: "Code", desc: "Clean, performant front-end development using the latest modern frameworks and best practices." },
+    { id: 4, title: "Video Editing", desc: "Creating high-quality, engaging videos by cutting, mixing, and adding effects to tell your story." }
   ];
 
   return (
@@ -482,8 +483,49 @@ const SkillsTicker = () => {
   );
 };
 
+const FaqCard = ({ faq, index }: { faq: { q: string, a: string }, index: number }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  return (
+    <FadeIn delay={index * 0.1}>
+      <div 
+        className="relative h-80 w-full cursor-pointer group"
+        style={{ perspective: "1000px" }}
+        onClick={() => setIsFlipped(!isFlipped)}
+        onMouseEnter={() => setIsFlipped(true)}
+        onMouseLeave={() => setIsFlipped(false)}
+      >
+        <motion.div
+          className="w-full h-full relative"
+          animate={{ rotateY: isFlipped ? 180 : 0 }}
+          transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
+          style={{ transformStyle: "preserve-3d" }}
+        >
+          {/* Front Face */}
+          <div 
+            className="absolute inset-0 w-full h-full bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-3xl border border-black/5 dark:border-white/10 shadow-sm flex flex-col justify-center items-center p-8 text-center transition-colors"
+            style={{ backfaceVisibility: "hidden" }}
+          >
+            <h3 className="font-display font-bold text-2xl md:text-3xl">{faq.q}</h3>
+            <p className="mt-8 text-xs font-bold uppercase tracking-widest text-ink/40 dark:text-slate-500">Hover to reveal</p>
+          </div>
+          
+          {/* Back Face */}
+          <div 
+            className="absolute inset-0 w-full h-full bg-ink dark:bg-white text-white dark:text-ink rounded-3xl shadow-xl flex flex-col justify-center items-center p-6 md:p-8 text-center"
+            style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
+          >
+            <p className="text-sm md:text-base leading-relaxed opacity-90">
+              {faq.a}
+            </p>
+          </div>
+        </motion.div>
+      </div>
+    </FadeIn>
+  );
+};
+
 const FAQ = () => {
-  const [expanded, setExpanded] = useState<number | null>(0);
   const faqs = [
     { q: "What services do you offer?", a: "I offer a full range of design services including UI/UX design, branding, product strategy, graphic design, motion graphics, video editing, photo manipulation, system management, and web development and many more." },
     { q: "How can I contact you?", a: "You can reach out via the contact: Email: riel.engana@student.passerellesnumeriques.org. or call 09850254857" },
@@ -493,33 +535,13 @@ const FAQ = () => {
 
   return (
     <section className="py-32 px-6">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <FadeIn>
           <h2 className="text-4xl md:text-6xl font-display font-bold text-center mb-20 tracking-tighter">Frequently Asked<br />Questions.</h2>
         </FadeIn>
-        <div className="space-y-4">
+        <div className="grid md:grid-cols-2 gap-8">
           {faqs.map((faq, i) => (
-            <FadeIn key={i} delay={i * 0.1} className="bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-black/5 dark:border-white/10 shadow-sm">
-              <button 
-                onClick={() => setExpanded(expanded === i ? null : i)}
-                className="w-full p-6 md:px-8 md:py-6 flex justify-between items-center text-left font-bold text-base md:text-lg gap-4"
-              >
-                {faq.q}
-                <ChevronDown className={`shrink-0 transition-transform duration-300 ${expanded === i ? 'rotate-180' : ''}`} />
-              </button>
-              <AnimatePresence>
-                {expanded === i && (
-                  <motion.div 
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    className="px-6 pb-6 md:px-8 text-sm md:text-base text-ink/60 dark:text-slate-400 leading-relaxed"
-                  >
-                    {faq.a}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </FadeIn>
+            <FaqCard key={i} faq={faq} index={i} />
           ))}
         </div>
       </div>
