@@ -492,8 +492,6 @@ const FaqCard = ({ faq, index }: { faq: { q: string, a: string }, index: number 
         className="relative h-80 w-full cursor-pointer group"
         style={{ perspective: "1000px" }}
         onClick={() => setIsFlipped(!isFlipped)}
-        onMouseEnter={() => setIsFlipped(true)}
-        onMouseLeave={() => setIsFlipped(false)}
       >
         <motion.div
           className="w-full h-full relative"
@@ -507,7 +505,7 @@ const FaqCard = ({ faq, index }: { faq: { q: string, a: string }, index: number 
             style={{ backfaceVisibility: "hidden" }}
           >
             <h3 className="font-display font-bold text-2xl md:text-3xl">{faq.q}</h3>
-            <p className="mt-8 text-xs font-bold uppercase tracking-widest text-ink/40 dark:text-slate-500">Hover to reveal</p>
+            <p className="mt-8 text-xs font-bold uppercase tracking-widest text-ink/40 dark:text-slate-500">Tap to reveal</p>
           </div>
           
           {/* Back Face */}
