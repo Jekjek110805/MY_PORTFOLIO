@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Linkedin, 
@@ -13,42 +13,74 @@ import {
   Phone,
   Facebook,
   Download,
-  Heading1
+  Heading1,
+  Moon,
+  Sun
 } from 'lucide-react';
 
 // --- Components ---
 
-const Navbar = () => (
-  <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center mix-blend-difference">
-    <div className="text-2xl font-display font-bold tracking-tighter text-white">ME_PROFILE.</div>
-    <div className="hidden md:flex items-center gap-8 text-white/80 font-medium">
-      <a href="#services" className="hover:text-white transition-colors">Services</a>
-      <a href="#portfolio" className="hover:text-white transition-colors">Portfolio</a>
-      <a href="#about" className="hover:text-white transition-colors">About</a>
-      <a href="#contact" className="hover:text-white transition-colors">Contact</a>
-    </div>
-    <div className="flex items-center gap-6">
-      <div className="flex gap-4 text-white/60">
-        <a href="https://www.linkedin.com/in/riel-jake-engana-585644372/" className="hover:text-white transition-colors"><Linkedin size={20} /></a>
-        <a href="https://www.instagram.com/real_jexkz/?hl=en" className="hover:text-white transition-colors"><Instagram size={20} /></a>
-        <a href="https://www.facebook.com/Engana08" className="hover:text-white transition-colors"><Facebook size={20} /></a>
+const FadeIn = ({ children, delay = 0, direction = 'up', className = "" }: { children: React.ReactNode, delay?: number, direction?: 'up' | 'left' | 'right', className?: string }) => {
+  const variants = {
+    hidden: { opacity: 0, y: direction === 'up' ? 40 : 0, x: direction === 'left' ? 40 : direction === 'right' ? -40 : 0 },
+    visible: { opacity: 1, y: 0, x: 0 }
+  };
+  return (
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.7, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
+      className={className}
+      variants={variants}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <nav className={`fixed top-0 left-0 w-full z-50 px-6 transition-all duration-500 flex justify-between items-center ${isScrolled ? 'py-4 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl shadow-sm border-b border-black/5 dark:border-white/5' : 'py-6 bg-transparent'}`}>
+      <div className="text-2xl font-display font-bold tracking-tighter">ME_PROFILE.</div>
+      <div className="hidden md:flex items-center gap-8 font-medium">
+        <a href="#services" className="hover:text-accent-start transition-colors">Services</a>
+        <a href="#portfolio" className="hover:text-accent-start transition-colors">Portfolio</a>
+        <a href="#about" className="hover:text-accent-start transition-colors">About</a>
+        <a href="#contact" className="hover:text-accent-start transition-colors">Contact</a>
       </div>
-  <a
-  href="/RIEL JAKE_ENGANA _VERCEL RESUME_ Geidi.jpg"
-  download
-  className="flex items-center gap-2 gradient-bg text-white px-6 py-2 rounded-full font-semibold text-sm hover:scale-105 transition-transform shadow-lg shadow-accent-start/20"
->
-  <Download size={16}/>
-  Download my Resume
-</a>
-    </div>
-  </nav>
-);
+      <div className="flex items-center gap-4 md:gap-6">
+        <div className="flex gap-4 opacity-60 hover:opacity-100 transition-opacity">
+          <a href="https://www.linkedin.com/in/riel-jake-engana-585644372/" className="hover:text-accent-start hover:scale-110 transition-all"><Linkedin size={20} /></a>
+          <a href="https://www.instagram.com/real_jexkz/?hl=en" className="hover:text-accent-start hover:scale-110 transition-all"><Instagram size={20} /></a>
+          <a href="https://www.facebook.com/Engana08" className="hover:text-accent-start hover:scale-110 transition-all"><Facebook size={20} /></a>
+        </div>
+        <a
+          href="/RIEL JAKE_ENGANA _VERCEL RESUME_ Geidi.jpg"
+          download
+          className="flex items-center gap-2 gradient-bg text-white px-4 md:px-6 py-2 rounded-full font-semibold text-xs md:text-sm hover:scale-105 transition-transform shadow-lg shadow-accent-start/20"
+        >
+          <Download size={16}/>
+          <span className="hidden md:inline">Download Resume</span>
+          <span className="inline md:hidden">Resume</span>
+        </a>
+      </div>
+    </nav>
+  );
+};
 
 const Hero = () => (
   <section className="relative min-h-screen flex items-center pt-20 overflow-hidden px-6 md:px-20">
     {/* Background Typography */}
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20vw] font-display font-black text-black/[0.03] select-none pointer-events-none uppercase tracking-tighter">
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20vw] font-display font-black text-black/[0.03] dark:text-white/[0.02] select-none pointer-events-none uppercase tracking-tighter transition-colors">
       Designer
     </div>
 
@@ -59,13 +91,13 @@ const Hero = () => (
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative z-10"
       >
-        <h1 className="text-6xl md:text-8xl font-display font-bold leading-[0.9] tracking-tighter mb-6">
+        <h1 className="text-5xl md:text-8xl font-display font-bold leading-[0.9] tracking-tighter mb-6 mt-12 md:mt-0">
           Web Development,<br />
           <span className="gradient-text"> UI/UX</span><br />
           & Design.
         </h1>
-        <p className="text-xl text-ink/60 max-w-md mb-8 leading-relaxed">
-          Hi, I'm <span className="text-ink font-semibold">Riel Jake Engaña</span>, A Software Development student at USJ-R with a 'living technology' mindset, having already completed 56 global and local projects
+        <p className="text-xl text-ink/60 dark:text-slate-400 max-w-md mb-8 leading-relaxed">
+          Hi, I'm <span className="text-ink dark:text-white font-semibold">Riel Jake Engaña</span>, A Software Development student at USJ-R with a 'living technology' mindset, having already completed 56 global and local projects
 before finishing Senior High School. My background spans freelance web development on Upwork and LinkedIn, graphic
 design, and technical maintenance for government platforms. These experiences have sharpened my professional
 problem-solving skills and my ability to deliver results for international clients. I am now eager to bring this proven
@@ -75,7 +107,7 @@ technical passion and work ethic to a forward-thinking team.
         <div className="relative inline-block">
           <span className="font-signature text-5xl text-accent-start -rotate-6 block absolute -top-8 -right-12 pointer-events-none opacity-80">
           </span>
-          <button className="bg-ink top-20 bottom-20 text-white px-8 py-4 rounded-full font-bold text-lg flex items-center gap-3 hover:bg-ink/90 transition-colors group">
+          <button className="bg-ink dark:bg-white top-20 bottom-20 text-white dark:text-ink px-8 py-4 rounded-full font-bold text-lg flex items-center gap-3 hover:bg-ink/90 dark:hover:bg-white/90 transition-colors group">
             View My Work
             <ArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </button>
@@ -91,7 +123,7 @@ technical passion and work ethic to a forward-thinking team.
         {/* Glow Effect */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-radial from-accent-start/20 to-transparent blur-3xl rounded-full" />
         
-        <div className="relative w-full max-w-md aspect-square rounded-full overflow-hidden border-8 border-white shadow-2xl">
+        <div className="relative w-full max-w-md aspect-square rounded-full overflow-hidden border-4 md:border-8 border-white dark:border-slate-800 shadow-2xl transition-colors">
           <img 
             src="/profile.jpg" 
             alt="Designer Portrait" 
@@ -103,31 +135,33 @@ technical passion and work ethic to a forward-thinking team.
         {/* Floating Tags */}
         <motion.div 
           animate={{ y: [0, -10, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-10 -left-4 bg-white px-4 py-2 rounded-full shadow-lg font-bold text-sm border border-black/5"
+          whileHover={{ scale: 1.1 }}
+          transition={{ y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
+          className="absolute top-4 md:top-10 -left-2 md:-left-4 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-lg font-bold text-xs md:text-sm border border-black/5 dark:border-white/10 cursor-pointer"
         >
           ✨ UI/UX
         </motion.div>
         <motion.div 
           animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          className="absolute bottom-20 -right-4 bg-white px-4 py-2 rounded-full shadow-lg font-bold text-sm border border-black/5"
-          
+          whileHover={{ scale: 1.1 }}
+          transition={{ y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 } }}
+          className="absolute bottom-10 md:bottom-20 -right-2 md:-right-4 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-lg font-bold text-xs md:text-sm border border-black/5 dark:border-white/10 cursor-pointer"
         >
           🎨 Web Development
         </motion.div>
         <motion.div 
           animate={{ x: [0, 10, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute top-1/2 -right-10 bg-white px-4 py-2 rounded-full shadow-lg font-bold text-sm border border-black/5"
+          whileHover={{ scale: 1.1 }}
+          transition={{ x: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 } }}
+          className="absolute top-1/2 -right-2 md:-right-10 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-lg font-bold text-xs md:text-sm border border-black/5 dark:border-white/10 cursor-pointer"
         >
           🚀 Product Design
         </motion.div>
 
         {/* Experience Badge */}
-        <div className="absolute -bottom-6 left-0 bg-white p-6 rounded-2xl shadow-xl border border-black/5 max-w-[200px]">
-          <div className="text-3xl font-display font-bold text-accent-start mb-1">5+</div>
-          <p className="text-xs font-semibold text-ink/60 uppercase tracking-wider leading-tight">
+        <div className="absolute -bottom-6 left-0 md:left-4 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md p-4 md:p-6 rounded-2xl shadow-xl border border-black/5 dark:border-white/10 max-w-[160px] md:max-w-[200px]">
+          <div className="text-2xl md:text-3xl font-display font-bold text-accent-start mb-1">5+</div>
+          <p className="text-[10px] md:text-xs font-semibold text-ink/60 dark:text-slate-400 uppercase tracking-wider leading-tight">
             Years of Experience. Award-winning creative designer.
           </p>
         </div>
@@ -147,34 +181,35 @@ const ServiceAccordion = () => {
   ];
 
   return (
-    <section id="services" className="py-32 px-6 bg-white">
+    <section id="services" className="py-32 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
           <h2 className="text-5xl md:text-7xl font-display font-bold tracking-tighter">
             My Specialized<br />Services.
           </h2>
-          <p className="text-ink/60 max-w-xs text-lg">
+          <p className="text-ink/60 dark:text-slate-400 max-w-xs text-lg">
             I provide comprehensive design solutions tailored to your business goals.
           </p>
         </div>
 
         <div className="space-y-4">
-          {services.map((service) => (
-            <div 
+          {services.map((service, idx) => (
+            <FadeIn 
               key={service.id}
+              delay={idx * 0.1}
               className={`rounded-3xl border transition-all duration-500 overflow-hidden ${
-                expanded === service.id ? 'bg-bg border-transparent shadow-inner' : 'bg-white border-black/5 hover:border-black/20'
+                expanded === service.id ? 'bg-black/5 dark:bg-white/10 border-transparent shadow-inner' : 'bg-white/50 dark:bg-slate-800/50 border-black/5 dark:border-white/5 hover:border-black/20 dark:hover:border-white/20 backdrop-blur-sm'
               }`}
             >
               <button 
                 onClick={() => setExpanded(expanded === service.id ? null : service.id)}
-                className="w-full px-8 py-10 flex justify-between items-center text-left"
+                className="w-full p-6 md:px-8 md:py-10 flex justify-between items-center text-left gap-4"
               >
-                <span className="text-3xl md:text-5xl font-display font-bold tracking-tight">
+                <span className="text-2xl md:text-5xl font-display font-bold tracking-tight">
                   {service.title}
                 </span>
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors ${
-                  expanded === service.id ? 'bg-accent-start text-white' : 'bg-bg text-ink'
+                <div className={`w-10 h-10 md:w-12 md:h-12 shrink-0 rounded-full flex items-center justify-center transition-colors ${
+                  expanded === service.id ? 'bg-accent-start text-white' : 'bg-black/5 dark:bg-white/10 text-ink dark:text-white'
                 }`}>
                   {expanded === service.id ? <Minus /> : <Plus />}
                 </div>
@@ -187,15 +222,15 @@ const ServiceAccordion = () => {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                   >
-                    <div className="px-8 pb-10 max-w-2xl">
-                      <p className="text-xl text-ink/70 leading-relaxed">
+                    <div className="px-6 pb-6 md:px-8 md:pb-10 max-w-2xl">
+                      <p className="text-lg md:text-xl text-ink/70 dark:text-slate-300 leading-relaxed">
                         {service.desc}
                       </p>
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </FadeIn>
           ))}
         </div>
       </div>
@@ -209,7 +244,7 @@ const AboutStats = () => (
       <motion.h2 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        className="text-3xl md:text-5xl font-display font-medium leading-tight mb-20"
+        className="text-2xl md:text-5xl font-display font-medium leading-tight mb-12 md:mb-20"
       >
         "UI/UX designer crafting intuitive, user-friendly experiences through wireframing, prototyping, and visual design."
       </motion.h2>
@@ -217,7 +252,7 @@ const AboutStats = () => (
       <div className="flex justify-center mb-20">
         <div className="relative group">
           <div className="absolute inset-0 bg-accent-start blur-2xl opacity-20 group-hover:opacity-40 transition-opacity rounded-full" />
-          <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-xl">
+          <div className="relative w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-white dark:border-slate-800 shadow-xl transition-colors cursor-pointer hover:scale-105 duration-500">
             <img 
               src="/permprofile.jpg" 
               alt="Designer Profile" 
@@ -235,10 +270,10 @@ const AboutStats = () => (
           { label: "Client Rating", value: "4.50" },
           { label: "Design Awards", value: "17" }
         ].map((stat, i) => (
-          <div key={i} className="flex flex-col items-center">
-            <span className="text-5xl md:text-7xl font-display font-bold mb-2">{stat.value}</span>
-            <span className="text-xs font-bold uppercase tracking-widest text-ink/40">{stat.label}</span>
-          </div>
+          <FadeIn key={i} delay={i * 0.1} className="flex flex-col items-center">
+            <span className="text-4xl md:text-7xl font-display font-bold mb-2">{stat.value}</span>
+            <span className="text-xs font-bold uppercase tracking-widest text-ink/40 dark:text-slate-500">{stat.label}</span>
+          </FadeIn>
         ))}
       </div>
     </div>
@@ -247,26 +282,28 @@ const AboutStats = () => (
 
 const Portfolio = () => {
   const projects = [
-    { title: "Mockup Design", category: "Mockup", img: "https://i.pinimg.com/1200x/c7/d1/01/c7d101d393ebdc64222459d97f98eb09.jpg" },
-    { title: "Book Design", category: "Editorial", img: "https://i.pinimg.com/1200x/27/7b/fb/277bfbead0fb50f6e38498a302575060.jpg" },
-    { title: "Brand Identity", category: "Branding", img: "https://i.pinimg.com/736x/f0/82/f5/f082f507e9c0495eb2148193525d1f05.jpg" },
-    { title: "Application UI", category: "Product", img: "https://i.pinimg.com/1200x/55/c5/c3/55c5c3dcc92f6a476097c191e28d1434.jpg" }
+    { title: "Mockup Design", category: "Mockup", img: "/branding.jpg" },
+    { title: "Book Design", category: "Editorial", img: "/books.jpg" },
+    { title: "Brand Identity", category: "Branding", img: "/logo.jpg" },
+    { title: "Application UI", category: "Product", img: "/Web App.png" }
   ];
 
   return (
-    <section id="portfolio" className="py-32 px-6 bg-white">
+    <section id="portfolio" className="py-32 px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-end mb-20">
-          <h2 className="text-5xl md:text-7xl font-display font-bold tracking-tighter">Latest<br />Portfolio.</h2>
-          <button className="hidden md:flex items-center gap-2 font-bold uppercase tracking-widest text-sm hover:text-accent-start transition-colors">
-            View All Projects <ArrowUpRight size={18} />
-          </button>
-        </div>
+        <FadeIn>
+          <div className="flex justify-between items-end mb-20">
+            <h2 className="text-5xl md:text-7xl font-display font-bold tracking-tighter">Latest<br />Portfolio.</h2>
+            <button className="hidden md:flex items-center gap-2 font-bold uppercase tracking-widest text-sm hover:text-accent-start transition-colors">
+              View All Projects <ArrowUpRight size={18} />
+            </button>
+          </div>
+        </FadeIn>
 
         <div className="grid md:grid-cols-2 gap-12">
           {projects.map((project, i) => (
-            <motion.div 
-              key={i}
+            <FadeIn key={i} delay={i * 0.1}>
+              <motion.div 
               whileHover={{ y: -10 }}
               className="group cursor-pointer"
             >
@@ -283,18 +320,19 @@ const Portfolio = () => {
                   </div>
                 </div>
                 <div className="absolute top-6 left-6">
-                  <span className="px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">
+                  <span className="px-4 py-2 bg-white/90 dark:bg-slate-800/90 dark:text-white backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-widest shadow-sm">
                     {project.category}
                   </span>
                 </div>
               </div>
               <div className="flex justify-between items-center">
                 <h3 className="text-3xl font-display font-bold">{project.title}</h3>
-                <div className="w-12 h-12 rounded-full border border-black/10 flex items-center justify-center group-hover:bg-ink group-hover:text-white transition-colors">
+                <div className="w-12 h-12 rounded-full border border-black/10 dark:border-white/10 flex items-center justify-center group-hover:bg-ink dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-ink transition-colors">
                   <ArrowUpRight size={20} />
                 </div>
               </div>
-            </motion.div>
+              </motion.div>
+            </FadeIn>
           ))}
         </div>
       </div>
@@ -302,65 +340,147 @@ const Portfolio = () => {
   );
 };
 
-const Testimonials = () => (
-  <section className="py-32 px-6">
-    <div className="max-w-7xl mx-auto">
-      <div className="grid md:grid-cols-3 gap-12">
-        {[
-          { 
-            quote: "Experiensado jud bataa, kamao daghan nakat-unan Visual",
-            name: "John Caried Dimaranan",
-            role: "CEO at UNO Caffee"
-          },
-          { 
-            quote: "Kani si Jake, isa ni sa akong consistent designer when it comes to Festivals",
-            name: "Marianie Mandela Jumawan",
-            role: " festival Choreographer"
-          },
-          { 
-            quote: "Affordable, Student budget ra iyang mga rates, so ako jud ni sya e recommend",
-            name: "Jayzen Cordove",
-            role: "Design Director at JT"
-          }
-        ].map((t, i) => (
-          <div key={i} className="flex flex-col h-full">
-            <div className="text-accent-start mb-6">
-              {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-2xl">★</span>
-              ))}
-            </div>
-            <p className="text-2xl font-display font-medium mb-8 flex-grow italic">
-              "{t.quote}"
-            </p>
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full overflow-hidden bg-bg">
-                <img src={`https://i.pravatar.cc/150?u=${i}`} alt={t.name} referrerPolicy="no-referrer" />
-              </div>
-              <div>
-                <h4 className="font-bold">{t.name}</h4>
-                <p className="text-xs text-ink/40 uppercase tracking-widest">{t.role}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
+const Testimonials = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-const LogoStrip = () => (
-  <section className="py-20 px-6 bg-white border-y border-black/5">
-    <div className="max-w-7xl mx-auto">
-      <div className="flex flex-wrap justify-center md:justify-between items-center gap-12 opacity-40 grayscale hover:grayscale-0 transition-all">
-        {['FIGMA', 'CANVA', 'PHOTOSHOP', 'AFFINITY', 'ILLUSTRATOR'].map((logo) => (
-          <div key={logo} className="px-8 py-4 bg-bg rounded-2xl font-display font-black text-2xl tracking-tighter">
-            {logo}
+  // Simulated API response for testimonials
+  const allTestimonials = [
+    { 
+      quote: "Very experienced and knowledgeable. I learned a lot about visual design from him.",
+      name: "John Caried Dimaranan",
+      role: "CEO at UNO Caffee"
+    },
+    { 
+      quote: "Jake is one of my most consistent and reliable designers, especially when it comes to Festivals.",
+      name: "Marianie Mandela Jumawan",
+      role: "Festival Choreographer"
+    },
+    { 
+      quote: "Highly affordable with student-friendly rates. I absolutely recommend his services!",
+      name: "Jayzen Cordove",
+      role: "Design Director at JT"
+    },
+    {
+      quote: "Exceptional attention to detail. He delivered the web project well before our strict deadline.",
+      name: "Sarah Jenkins",
+      role: "Marketing Manager"
+    },
+    {
+      quote: "His UI/UX skills transformed our platform. User engagement has improved significantly.",
+      name: "Michael Chen",
+      role: "Product Owner"
+    },
+    {
+      quote: "A brilliant young developer with a professional work ethic. Fantastic results overall!",
+      name: "Elena Rodriguez",
+      role: "Startup Founder"
+    }
+  ];
+
+  // Automatically slide every 10 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % Math.ceil(allTestimonials.length / 3));
+    }, 10000);
+    return () => clearInterval(timer);
+  }, [allTestimonials.length]);
+
+  const visibleTestimonials = allTestimonials.slice(currentIndex * 3, (currentIndex + 1) * 3);
+
+  return (
+    <section className="py-32 px-6 overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={currentIndex}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            className="grid md:grid-cols-3 gap-12"
+          >
+            {visibleTestimonials.map((t, i) => (
+              <div key={i} className="flex flex-col h-full">
+                <div className="text-accent-start mb-6">
+                  {[...Array(5)].map((_, index) => (
+                    <span key={index} className="text-2xl">★</span>
+                  ))}
+                </div>
+                <p className="text-2xl font-display font-medium mb-8 flex-grow italic">
+                  "{t.quote}"
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full overflow-hidden bg-black/5 dark:bg-white/10">
+                    {/* Use the name to generate a consistent mock avatar */}
+                    <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${t.name.replace(' ', '')}`} alt={t.name} referrerPolicy="no-referrer" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold">{t.name}</h4>
+                    <p className="text-xs text-ink/40 dark:text-slate-500 uppercase tracking-widest">{t.role}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Slideshow Indicators */}
+        <div className="flex justify-center mt-16 gap-3">
+          {[...Array(Math.ceil(allTestimonials.length / 3))].map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentIndex(i)}
+              className={`h-2 rounded-full transition-all duration-500 ${i === currentIndex ? 'w-8 bg-accent-start' : 'w-2 bg-black/20 dark:bg-white/20 hover:bg-black/40 dark:hover:bg-white/40'}`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const SkillsTicker = () => {
+  const skills = [
+    { name: "HTML", icon: "https://cdn.simpleicons.org/html5/E34F26" },
+    { name: "CSS", icon: "https://cdn.simpleicons.org/css3/1572B6" },
+    { name: "PHP", icon: "https://cdn.simpleicons.org/php/777BB4" },
+    { name: "JAVA", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+    { name: "REACT", icon: "https://cdn.simpleicons.org/react/61DAFB" },
+    { name: "NODE.JS", icon: "https://cdn.simpleicons.org/nodedotjs/339933" },
+    { name: "TYPESCRIPT", icon: "https://cdn.simpleicons.org/typescript/3178C6" },
+    { name: "LARAVEL", icon: "https://cdn.simpleicons.org/laravel/FF2D20" },
+    { name: "TAILWIND", icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
+    { name: "MONGODB", icon: "https://cdn.simpleicons.org/mongodb/47A248" },
+    { name: "MYSQL", icon: "https://cdn.simpleicons.org/mysql/4479A1" },
+    { name: "ORACLE", icon: "https://cdn.simpleicons.org/oracle/F80000" },
+    { name: "FIGMA", icon: "https://cdn.simpleicons.org/figma/F24E1E" },
+    { name: "CANVA", icon: "https://cdn.simpleicons.org/canva/00C4CC" },
+    { name: "PHOTOSHOP", icon: "https://cdn.simpleicons.org/adobephotoshop/31A8FF" },
+    { name: "AFFINITY", icon: "https://cdn.simpleicons.org/affinity/1B72B8" },
+    { name: "ILLUSTRATOR", icon: "https://cdn.simpleicons.org/adobeillustrator/FF9A00" }
+  ];
+
+  return (
+    <section className="py-12 overflow-hidden flex whitespace-nowrap">
+      <motion.div 
+        className="flex items-center w-max"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{ duration: 40, ease: "linear", repeat: Infinity }}
+      >
+        {[...skills, ...skills].map((skill, index) => (
+          <div 
+            key={index} 
+            className="flex items-center gap-4 px-8 py-4 mx-4 font-display font-black text-2xl tracking-tighter opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-default"
+          >
+            <img src={skill.icon} alt={`${skill.name} logo`} className="w-8 h-8 object-contain" />
+            {skill.name}
           </div>
         ))}
-      </div>
-    </div>
-  </section>
-);
+      </motion.div>
+    </section>
+  );
+};
 
 const FAQ = () => {
   const [expanded, setExpanded] = useState<number | null>(0);
@@ -372,18 +492,20 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="py-32 px-6 bg-bg">
+    <section className="py-32 px-6">
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-4xl md:text-6xl font-display font-bold text-center mb-20 tracking-tighter">Frequently Asked<br />Questions.</h2>
+        <FadeIn>
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-center mb-20 tracking-tighter">Frequently Asked<br />Questions.</h2>
+        </FadeIn>
         <div className="space-y-4">
           {faqs.map((faq, i) => (
-            <div key={i} className="bg-white rounded-2xl overflow-hidden border border-black/5 shadow-sm">
+            <FadeIn key={i} delay={i * 0.1} className="bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-black/5 dark:border-white/10 shadow-sm">
               <button 
                 onClick={() => setExpanded(expanded === i ? null : i)}
-                className="w-full px-8 py-6 flex justify-between items-center text-left font-bold text-lg"
+                className="w-full p-6 md:px-8 md:py-6 flex justify-between items-center text-left font-bold text-base md:text-lg gap-4"
               >
                 {faq.q}
-                <ChevronDown className={`transition-transform duration-300 ${expanded === i ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`shrink-0 transition-transform duration-300 ${expanded === i ? 'rotate-180' : ''}`} />
               </button>
               <AnimatePresence>
                 {expanded === i && (
@@ -391,13 +513,13 @@ const FAQ = () => {
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: 'auto', opacity: 1 }}
                     exit={{ height: 0, opacity: 0 }}
-                    className="px-8 pb-6 text-ink/60 leading-relaxed"
+                    className="px-6 pb-6 md:px-8 text-sm md:text-base text-ink/60 dark:text-slate-400 leading-relaxed"
                   >
                     {faq.a}
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </FadeIn>
           ))}
         </div>
       </div>
@@ -406,16 +528,16 @@ const FAQ = () => {
 };
 
 const Contact = () => (
-  <section id="contact" className="py-32 px-6 relative overflow-hidden bg-white">
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[25vw] font-display font-black text-black/[0.03] select-none pointer-events-none uppercase tracking-tighter">
+  <section id="contact" className="py-32 px-6 relative overflow-hidden">
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[25vw] font-display font-black text-black/[0.03] dark:text-white/[0.02] select-none pointer-events-none uppercase tracking-tighter transition-colors">
       Contact
     </div>
 
     <div className="max-w-7xl mx-auto relative z-10">
-      <div className="grid md:grid-cols-2 gap-20 items-center">
-        <div className="relative">
+      <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+        <FadeIn direction="right" className="relative">
           <div className="absolute inset-0 bg-accent-start blur-3xl opacity-20 rounded-full" />
-          <div className="relative aspect-square rounded-[3rem] overflow-hidden border-8 border-bg shadow-2xl">
+          <div className="relative aspect-square rounded-3xl md:rounded-[3rem] overflow-hidden border-4 md:border-8 border-white/50 dark:border-slate-800/50 shadow-2xl transition-colors">
             <img 
               src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTZ5ZG8wMzBsYnQ5MHdwODl0MzdvYzVrdmVuNnZ1N253ejE4Y2U5MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qnC0HHjoN5kSJyq2Zc/giphy.gif" 
               alt="Contact" 
@@ -423,82 +545,73 @@ const Contact = () => (
               referrerPolicy="no-referrer"
             />
           </div>
-        </div>
-        <div>
-                <div className="text-2xl font-display font-bold tracking-tighter">SEND ME AN EMAIL NOW!</div>
-<br>
-</br>
-<form 
-  action="https://formsubmit.co/rieljake.engana.24@usjr.edu.ph" 
-  method="POST"
-  className="space-y-6"
->
+        </FadeIn>
+        
+        <FadeIn direction="left">
+          <div className="text-2xl font-display font-bold tracking-tighter mb-8">SEND ME AN EMAIL NOW!</div>
+          
+          <form 
+            action="https://formsubmit.co/rieljake.engana.24@usjr.edu.ph" 
+            method="POST"
+            className="space-y-6"
+          >
+            <input type="hidden" name="_subject" value="You have New Message from your client Jake!" />
+            <input type="hidden" name="_captcha" value="false" />
 
-  <input type="hidden" name="_subject" value="You have New Message from your client Jake!" />
-  <input type="hidden" name="_captcha" value="false" />
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-widest text-ink/40 dark:text-slate-500">
+                Full Name
+              </label>
+              <input 
+                type="text" 
+                name="name"
+                required
+                placeholder="Name"
+                className="w-full bg-black/5 dark:bg-white/10 dark:text-white rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-accent-start transition-shadow"
+              />
+            </div>
 
-  <div className="space-y-2">
-    <label className="text-xs font-bold uppercase tracking-widest text-ink/40">
-      Full Name
-    </label>
-    <input 
-      type="text" 
-      name="name"
-      required
-      placeholder="Name"
-      className="w-full bg-bg rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-accent-start"
-    />
-  </div>
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-widest text-ink/40 dark:text-slate-500">
+                Email
+              </label>
+              <input 
+                type="email" 
+                name="email"
+                required
+                placeholder="yourname@email.com"
+                className="w-full bg-black/5 dark:bg-white/10 dark:text-white rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-accent-start transition-shadow"
+              />
+            </div>
 
-  <div className="space-y-2">
-    <label className="text-xs font-bold uppercase tracking-widest text-ink/40">
-      Email
-    </label>
-    <input 
-      type="email" 
-      name="email"
-      required
-      placeholder="yourname@email.com"
-      className="w-full bg-bg rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-accent-start"
-    />
-  </div>
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-widest text-ink/40 dark:text-slate-500">
+                Message
+              </label>
+              <textarea 
+                name="message"
+                required
+                rows="4"
+                placeholder="Write your message..."
+                className="w-full bg-black/5 dark:bg-white/10 dark:text-white rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-accent-start resize-none transition-shadow"
+              />
+            </div>
 
-  <div className="space-y-2">
-    <label className="text-xs font-bold uppercase tracking-widest text-ink/40">
-      Message
-    </label>
-    <textarea 
-      name="message"
-      required
-      rows="4"
-      placeholder="Write your message..."
-      className="w-full bg-bg rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-accent-start resize-none"
-    />
-  </div>
-
-  <button
-    type="submit"
-    className="w-full gradient-bg text-white py-4 rounded-2xl font-bold hover:scale-[1.02] transition-transform"
-  >
-    Send Email
-  </button>
-
-</form>
-          <form>
-<div className="flex gap-4 mt-6">
-
-
-</div>
-
+            <button
+              type="submit"
+              className="w-full gradient-bg text-white py-4 rounded-2xl font-bold hover:scale-[1.02] transition-transform"
+            >
+              Send Email
+            </button>
           </form>
-        </div>
+        </FadeIn>
       </div>
     </div>
   </section>
 );
 
 const Footer = () => (
-  <footer className="py-12 px-6 bg-ink text-white">
+  <footer className="py-12 px-6 bg-ink dark:bg-black text-white transition-colors duration-500">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
       <div className="text-2xl font-display font-bold tracking-tighter">ME_PROFILE.</div>
       <div className="flex gap-8 text-white/60 text-sm font-medium">
@@ -512,8 +625,19 @@ const Footer = () => (
 );
 
 export default function PortfolioPage() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = 'smooth';
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
   return (
-    <div className="relative">
+    <div className="relative min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-ink dark:text-white transition-colors duration-500 selection:bg-accent-start selection:text-white">
       <Navbar />
       <main>
         <Hero />
@@ -521,11 +645,19 @@ export default function PortfolioPage() {
         <AboutStats />
         <Portfolio />
         <Testimonials />
-        <LogoStrip />
+        <SkillsTicker />
         <FAQ />
         <Contact />
       </main>
       <Footer />
+
+      {/* Dark Mode Toggle */}
+      <button 
+        onClick={() => setIsDarkMode(!isDarkMode)}
+        className="fixed bottom-8 right-8 z-50 p-4 rounded-full bg-ink dark:bg-white text-white dark:text-ink shadow-2xl hover:scale-110 transition-transform"
+      >
+        {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
+      </button>
     </div>
   );
 }
