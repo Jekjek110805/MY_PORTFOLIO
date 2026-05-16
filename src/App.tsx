@@ -125,7 +125,7 @@ technical passion and work ethic to a forward-thinking team.
         
         <div className="relative w-full max-w-md aspect-square rounded-full overflow-hidden border-4 md:border-8 border-white dark:border-slate-800 shadow-2xl transition-colors">
           <img 
-            src="/profile.jpg" 
+            src="/699273422_1702802617512994_1962015335284207172_n.jpg" 
             alt="Designer Portrait" 
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
@@ -255,7 +255,7 @@ const AboutStats = () => (
           <div className="absolute inset-0 bg-accent-start blur-2xl opacity-20 group-hover:opacity-40 transition-opacity rounded-full" />
           <div className="relative w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-white dark:border-slate-800 shadow-xl transition-colors cursor-pointer hover:scale-105 duration-500">
             <img 
-              src="/permprofile.jpg" 
+              src="/699273422_1702802617512994_1962015335284207172_n.jpg" 
               alt="Designer Profile" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
