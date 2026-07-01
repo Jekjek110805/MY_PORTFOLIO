@@ -676,8 +676,8 @@ export default function PortfolioPage() {
           rotation={18}
         />
       </div>
-      <div className="fixed inset-0 z-0 pointer-events-none bg-white/78 dark:bg-slate-950/58" />
-      <div className="fixed inset-0 z-0 pointer-events-none bg-gradient-to-br from-slate-50/80 via-white/55 to-[#a3beff]/25 dark:from-slate-950/50 dark:via-slate-900/30 dark:to-[#a3beff]/15" />
+      <div className="fixed inset-0 z-0 pointer-events-none bg-white/68 dark:bg-slate-950/54" />
+      <div className="fixed inset-0 z-0 pointer-events-none bg-gradient-to-br from-slate-50/72 via-white/40 to-[#a3beff]/35 dark:from-slate-950/48 dark:via-slate-900/24 dark:to-[#a3beff]/18" />
       <Navbar />
       <main className="relative z-10">
         <Hero />
