@@ -454,11 +454,11 @@ const SkillsTicker = () => {
     { name: "MYSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
     { name: "ORACLE", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" },
     { name: "FIGMA", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
-    { name: "CANVA", icon: "https://cdn.simpleicons.org/canva/00C4CC" },
+    { name: "CANVA", icon: "https://cdn.worldvectorlogo.com/logos/canva-1.svg" },
     { name: "PHOTOSHOP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" },
-    { name: "AFFINITY", icon: "https://cdn.simpleicons.org/affinity/1B72B8" },
+    { name: "AFFINITY", icon: "https://cdn.worldvectorlogo.com/logos/affinity-designer.svg" },
     { name: "ILLUSTRATOR", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-original.svg" },
-    { name: "HERMES AGENT", icon: "https://raw.githubusercontent.com/NousResearch/hermes-agent/main/assets/logo.png" }
+    { name: "HERMES AGENT", icon: "https://hermes-agent.nousresearch.com/logo.png" }
   ];
 
   return (
