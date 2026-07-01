@@ -283,7 +283,7 @@ const Portfolio = () => {
   const projects = [
     { title: "Mockup Design", category: "Mockup", img: "/branding.jpg" },
     { title: "Book Design", category: "Editorial", img: "/books.jpg" },
-    { title: "Brand Identity", category: "Branding", img: "/logo.jpg" },
+    { title: "Kriti Project", category: "Brand Identity", img: "/kriti-project.png" },
     { title: "Application UI", category: "Product", img: "/Web App.png" }
   ];
 
