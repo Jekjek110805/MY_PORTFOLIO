@@ -178,7 +178,8 @@ const ServiceAccordion = () => {
     { id: 1, title: "Design", desc: "Efficient, knowledgeable, and smooth experience. Highly recommended for complex UI/UX challenges." },
     { id: 2, title: "Marketing", desc: "Strategic digital marketing campaigns designed to drive growth and maximize ROI." },
     { id: 3, title: "Code", desc: "Clean, performant front-end development using the latest modern frameworks and best practices." },
-    { id: 4, title: "Video Editing", desc: "Creating high-quality, engaging videos by cutting, mixing, and adding effects to tell your story." }
+    { id: 4, title: "Video Editing", desc: "Creating high-quality, engaging videos by cutting, mixing, and adding effects to tell your story." },
+    { id: 5, title: "Agentic Automation", desc: "Building autonomous AI agents and automated workflows that reason, plan, and execute complex tasks independently." }
   ];
 
   return (
