@@ -647,14 +647,22 @@ const Footer = () => (
 );
 
 export default function PortfolioPage() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedTheme = window.localStorage.getItem('portfolio-theme');
+    if (savedTheme) return savedTheme === 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
 
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
+      document.documentElement.style.colorScheme = 'dark';
+      window.localStorage.setItem('portfolio-theme', 'dark');
     } else {
       document.documentElement.classList.remove('dark');
+      document.documentElement.style.colorScheme = 'light';
+      window.localStorage.setItem('portfolio-theme', 'light');
     }
   }, [isDarkMode]);
 
@@ -696,6 +704,8 @@ export default function PortfolioPage() {
       <button 
         onClick={() => setIsDarkMode(!isDarkMode)}
         className="fixed bottom-8 right-8 z-50 p-4 rounded-full bg-ink dark:bg-white text-white dark:text-ink shadow-2xl hover:scale-110 transition-transform"
+        aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+        aria-pressed={isDarkMode}
       >
         {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
       </button>
