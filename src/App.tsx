@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import Beams from './components/Beams/Beams';
 import { 
   Linkedin, 
   Instagram, 
@@ -616,7 +617,7 @@ const Contact = () => (
               <textarea 
                 name="message"
                 required
-                rows="4"
+                rows={4}
                 placeholder="Write your message..."
                 className="w-full bg-black/5 dark:bg-white/10 dark:text-white rounded-2xl px-6 py-4 outline-none focus:ring-2 focus:ring-accent-start resize-none transition-shadow"
               />
@@ -662,9 +663,23 @@ export default function PortfolioPage() {
   }, [isDarkMode]);
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 text-ink dark:text-white transition-colors duration-500 selection:bg-accent-start selection:text-white">
+    <div className="relative min-h-screen overflow-hidden bg-black text-ink dark:text-white transition-colors duration-500 selection:bg-accent-start selection:text-white">
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <Beams
+          beamWidth={2.4}
+          beamHeight={18}
+          beamNumber={14}
+          lightColor="#a3beff"
+          speed={1.6}
+          noiseIntensity={1.35}
+          scale={0.22}
+          rotation={18}
+        />
+      </div>
+      <div className="fixed inset-0 z-0 pointer-events-none bg-white/78 dark:bg-slate-950/58" />
+      <div className="fixed inset-0 z-0 pointer-events-none bg-gradient-to-br from-slate-50/80 via-white/55 to-[#a3beff]/25 dark:from-slate-950/50 dark:via-slate-900/30 dark:to-[#a3beff]/15" />
       <Navbar />
-      <main>
+      <main className="relative z-10">
         <Hero />
         <ServiceAccordion />
         <AboutStats />
@@ -674,7 +689,9 @@ export default function PortfolioPage() {
         <FAQ />
         <Contact />
       </main>
-      <Footer />
+      <div className="relative z-10">
+        <Footer />
+      </div>
 
       {/* Dark Mode Toggle */}
       <button 
