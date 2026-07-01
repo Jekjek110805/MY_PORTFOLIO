@@ -485,41 +485,45 @@ const SkillsTicker = () => {
 };
 
 const FaqCard = ({ faq, index }: { faq: { q: string, a: string }, index: number }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <FadeIn delay={index * 0.1}>
-      <div 
-        className="relative h-80 w-full cursor-pointer group"
-        style={{ perspective: "1000px" }}
-        onClick={() => setIsFlipped(!isFlipped)}
+      <motion.div
+        className="group bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-3xl border border-black/5 dark:border-white/10 overflow-hidden transition-all duration-300 hover:border-black/10 dark:hover:border-white/20 hover:shadow-lg"
+        initial={false}
+        layout
       >
-        <motion.div
-          className="w-full h-full relative"
-          animate={{ rotateY: isFlipped ? 180 : 0 }}
-          transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
-          style={{ transformStyle: "preserve-3d" }}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-full p-6 md:p-8 flex items-center justify-between gap-4 text-left"
+          aria-expanded={isOpen}
         >
-          {/* Front Face */}
-          <div 
-            className="absolute inset-0 w-full h-full bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-3xl border border-black/5 dark:border-white/10 shadow-sm flex flex-col justify-center items-center p-8 text-center transition-colors"
-            style={{ backfaceVisibility: "hidden" }}
+          <h3 className="font-display font-bold text-2xl md:text-3xl pr-12">
+            {faq.q}
+          </h3>
+          <motion.div
+            animate={{ rotate: isOpen ? 45 : 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="flex-shrink-0 text-ink/40 dark:text-slate-500"
           >
-            <h3 className="font-display font-bold text-2xl md:text-3xl">{faq.q}</h3>
-            <p className="mt-8 text-xs font-bold uppercase tracking-widest text-ink/40 dark:text-slate-500">Tap to reveal</p>
-          </div>
-          
-          {/* Back Face */}
-          <div 
-            className="absolute inset-0 w-full h-full bg-ink dark:bg-white text-white dark:text-ink rounded-3xl shadow-xl flex flex-col justify-center items-center p-6 md:p-8 text-center"
-            style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
-          >
-            <p className="text-sm md:text-base leading-relaxed opacity-90">
+            <Plus className="w-6 h-6" />
+          </motion.div>
+        </button>
+        
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+          transition={{ duration: 0.4, ease: [0.21, 0.47, 0.32, 0.98] }}
+          className="overflow-hidden"
+        >
+          <div className="px-6 pb-8 md:px-8 md:pb-10 border-t border-black/5 dark:border-white/10 bg-black/2 dark:bg-white/2">
+            <p className="text-lg leading-relaxed text-ink/70 dark:text-slate-300">
               {faq.a}
             </p>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </FadeIn>
   );
 };
@@ -538,7 +542,7 @@ const FAQ = () => {
         <FadeIn>
           <h2 className="text-4xl md:text-6xl font-display font-bold text-center mb-20 tracking-tighter">Frequently Asked<br />Questions.</h2>
         </FadeIn>
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="max-w-3xl mx-auto space-y-4">
           {faqs.map((faq, i) => (
             <FaqCard key={i} faq={faq} index={i} />
           ))}
