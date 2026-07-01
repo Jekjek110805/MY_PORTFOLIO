@@ -82,7 +82,7 @@ const Hero = () => (
   <section className="relative min-h-screen flex items-center pt-20 overflow-hidden px-6 md:px-20">
     {/* Background Typography */}
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20vw] font-display font-black text-black/[0.03] dark:text-white/[0.02] select-none pointer-events-none uppercase tracking-tighter transition-colors">
-      Designer
+      Agentic
     </div>
 
     <div className="grid md:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
@@ -93,16 +93,12 @@ const Hero = () => (
         className="relative z-10"
       >
         <h1 className="text-5xl md:text-8xl font-display font-bold leading-[0.9] tracking-tighter mb-6 mt-12 md:mt-0">
-          Web Development,<br />
-          <span className="gradient-text"> UI/UX</span><br />
-          & Design.
+          AI Engineering,<br />
+          <span className="gradient-text"> Agentic</span><br />
+          Automation.
         </h1>
         <p className="text-xl text-ink/60 dark:text-slate-400 max-w-md mb-8 leading-relaxed">
-          Hi, I'm <span className="text-ink dark:text-white font-semibold">Riel Jake Engaña</span>, A Software Development student at USJ-R with a 'living technology' mindset, having already completed 56 global and local projects
-before finishing Senior High School. My background spans freelance web development on Upwork and LinkedIn, graphic
-design, and technical maintenance for government platforms. These experiences have sharpened my professional
-problem-solving skills and my ability to deliver results for international clients. I am now eager to bring this proven
-technical passion and work ethic to a forward-thinking team.
+          Hi, I'm <span className="text-ink dark:text-white font-semibold">Riel Jake Engaña</span>, an Industrial Engineer Intern at Geidi IT specializing in AI Automation. I build autonomous AI agents and agentic workflows that reason, plan, and execute complex tasks — moving beyond chatbots into systems that actually get work done. My background blends industrial engineering rigor with hands-on AI development: designing multi-agent architectures, orchestrating LLM pipelines, and automating end-to-end business processes. Currently deploying production agentic systems at Geidi while finishing my Software Development degree at USJ-R.
         </p>
         
         <div className="relative inline-block">
@@ -134,38 +130,38 @@ technical passion and work ethic to a forward-thinking team.
         </div>
 
         {/* Floating Tags */}
-        <motion.div 
-          animate={{ y: [0, -10, 0] }}
-          whileHover={{ scale: 1.1 }}
-          transition={{ y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
-          className="absolute top-4 md:top-10 -left-2 md:-left-4 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-lg font-bold text-xs md:text-sm border border-black/5 dark:border-white/10 cursor-pointer"
-        >
-          ✨ UI/UX
-        </motion.div>
-        <motion.div 
-          animate={{ y: [0, 10, 0] }}
-          whileHover={{ scale: 1.1 }}
-          transition={{ y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 } }}
-          className="absolute bottom-10 md:bottom-20 -right-2 md:-right-4 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-lg font-bold text-xs md:text-sm border border-black/5 dark:border-white/10 cursor-pointer"
-        >
-          🎨 Web Development
-        </motion.div>
-        <motion.div 
-          animate={{ x: [0, 10, 0] }}
-          whileHover={{ scale: 1.1 }}
-          transition={{ x: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 } }}
-          className="absolute top-1/2 -right-2 md:-right-10 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-lg font-bold text-xs md:text-sm border border-black/5 dark:border-white/10 cursor-pointer"
-        >
-          🚀 Product Design
-        </motion.div>
+                <motion.div
+                  animate={{ y: [0, -10, 0] }}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
+                  className="absolute top-4 md:top-10 -left-2 md:-left-4 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-lg font-bold text-xs md:text-sm border border-black/5 dark:border-white/10 cursor-pointer"
+                >
+                  🤖 Agentic AI
+                </motion.div>
+                <motion.div
+                  animate={{ y: [0, 10, 0] }}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 } }}
+                  className="absolute bottom-10 md:bottom-20 -right-2 md:-right-4 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-lg font-bold text-xs md:text-sm border border-black/5 dark:border-white/10 cursor-pointer"
+                >
+                  ⚡ Multi-Agent
+                </motion.div>
+                <motion.div
+                  animate={{ x: [0, 10, 0] }}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ x: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 } }}
+                  className="absolute top-1/2 -right-2 md:-right-10 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md px-3 md:px-4 py-1.5 md:py-2 rounded-full shadow-lg font-bold text-xs md:text-sm border border-black/5 dark:border-white/10 cursor-pointer"
+                >
+                  🔧 LLM Ops
+                </motion.div>
 
-        {/* Experience Badge */}
-        <div className="absolute -bottom-6 left-0 md:left-4 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md p-4 md:p-6 rounded-2xl shadow-xl border border-black/5 dark:border-white/10 max-w-[160px] md:max-w-[200px]">
-          <div className="text-2xl md:text-3xl font-display font-bold text-accent-start mb-1">5+</div>
-          <p className="text-[10px] md:text-xs font-semibold text-ink/60 dark:text-slate-400 uppercase tracking-wider leading-tight">
-            Years of Experience. Award-winning creative designer.
-          </p>
-        </div>
+                {/* Experience Badge */}
+                <div className="absolute -bottom-6 left-0 md:left-4 bg-white/80 dark:bg-slate-800/80 backdrop-blur-md p-4 md:p-6 rounded-2xl shadow-xl border border-black/5 dark:border-white/10 max-w-[160px] md:max-w-[200px]">
+                  <div className="text-2xl md:text-3xl font-display font-bold text-accent-start mb-1">OJT</div>
+                  <p className="text-[10px] md:text-xs font-semibold text-ink/60 dark:text-slate-400 uppercase tracking-wider leading-tight">
+                    Industrial Engineer Intern — AI Automation @ Geidi IT
+                  </p>
+                </div>
       </motion.div>
     </div>
   </section>
