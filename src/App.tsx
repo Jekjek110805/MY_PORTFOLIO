@@ -457,7 +457,8 @@ const SkillsTicker = () => {
     { name: "CANVA", icon: "https://cdn.simpleicons.org/canva/00C4CC" },
     { name: "PHOTOSHOP", icon: "https://cdn.simpleicons.org/adobephotoshop/31A8FF" },
     { name: "AFFINITY", icon: "https://cdn.simpleicons.org/affinity/1B72B8" },
-    { name: "ILLUSTRATOR", icon: "https://cdn.simpleicons.org/adobeillustrator/FF9A00" }
+    { name: "ILLUSTRATOR", icon: "https://cdn.simpleicons.org/adobeillustrator/FF9A00" },
+    { name: "HERMES AGENT", icon: "https://cdn.simpleicons.org/hermes/000000" }
   ];
 
   return (
