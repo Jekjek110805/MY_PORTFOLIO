@@ -441,24 +441,24 @@ const Testimonials = () => {
 
 const SkillsTicker = () => {
   const skills = [
-    { name: "HTML", icon: "https://cdn.simpleicons.org/html5/E34F26" },
-    { name: "CSS", icon: "https://cdn.simpleicons.org/css3/1572B6" },
-    { name: "PHP", icon: "https://cdn.simpleicons.org/php/777BB4" },
+    { name: "HTML", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+    { name: "CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+    { name: "PHP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
     { name: "JAVA", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
-    { name: "REACT", icon: "https://cdn.simpleicons.org/react/61DAFB" },
-    { name: "NODE.JS", icon: "https://cdn.simpleicons.org/nodedotjs/339933" },
-    { name: "TYPESCRIPT", icon: "https://cdn.simpleicons.org/typescript/3178C6" },
-    { name: "LARAVEL", icon: "https://cdn.simpleicons.org/laravel/FF2D20" },
-    { name: "TAILWIND", icon: "https://cdn.simpleicons.org/tailwindcss/06B6D4" },
-    { name: "MONGODB", icon: "https://cdn.simpleicons.org/mongodb/47A248" },
-    { name: "MYSQL", icon: "https://cdn.simpleicons.org/mysql/4479A1" },
-    { name: "ORACLE", icon: "https://cdn.simpleicons.org/oracle/F80000" },
-    { name: "FIGMA", icon: "https://cdn.simpleicons.org/figma/F24E1E" },
+    { name: "REACT", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+    { name: "NODE.JS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+    { name: "TYPESCRIPT", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+    { name: "LARAVEL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" },
+    { name: "TAILWIND", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+    { name: "MONGODB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+    { name: "MYSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+    { name: "ORACLE", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" },
+    { name: "FIGMA", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
     { name: "CANVA", icon: "https://cdn.simpleicons.org/canva/00C4CC" },
-    { name: "PHOTOSHOP", icon: "https://cdn.simpleicons.org/adobephotoshop/31A8FF" },
+    { name: "PHOTOSHOP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" },
     { name: "AFFINITY", icon: "https://cdn.simpleicons.org/affinity/1B72B8" },
-    { name: "ILLUSTRATOR", icon: "https://cdn.simpleicons.org/adobeillustrator/FF9A00" },
-    { name: "HERMES AGENT", icon: "https://cdn.simpleicons.org/hermes/000000" }
+    { name: "ILLUSTRATOR", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-original.svg" },
+    { name: "HERMES AGENT", icon: "https://raw.githubusercontent.com/NousResearch/hermes-agent/main/assets/logo.png" }
   ];
 
   return (
