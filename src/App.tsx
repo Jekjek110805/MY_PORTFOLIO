@@ -454,11 +454,11 @@ const SkillsTicker = () => {
     { name: "MYSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
     { name: "ORACLE", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" },
     { name: "FIGMA", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
-    { name: "CANVA", icon: "https://cdn.worldvectorlogo.com/logos/canva-1.svg" },
+    { name: "CANVA", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/canva/canva-original.svg" },
     { name: "PHOTOSHOP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" },
-    { name: "AFFINITY", icon: "https://cdn.worldvectorlogo.com/logos/affinity-designer.svg" },
+    { name: "AFFINITY", icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHJ4PSI0IiBmaWxsPSIjMUI3MkI4Ii8+PHRleHQgeD0iNTAlIiB5PSI1OCUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5BJjwvdGV4dD48L3N2Zz4=" },
     { name: "ILLUSTRATOR", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-original.svg" },
-    { name: "HERMES AGENT", icon: "https://hermes-agent.nousresearch.com/logo.png" }
+    { name: "HERMES AGENT", icon: "https://hermes-agent.nousresearch.com/img/desktop/badge.webp" }
   ];
 
   return (
