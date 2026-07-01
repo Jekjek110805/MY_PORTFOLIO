@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import Beams from './components/Beams/Beams';
+import Prism from './components/Prism/Prism';
 import { 
   Linkedin, 
   Instagram, 
@@ -660,20 +660,23 @@ export default function PortfolioPage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-black text-ink dark:text-white transition-colors duration-500 selection:bg-accent-start selection:text-white">
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <Beams
-          beamWidth={2.4}
-          beamHeight={18}
-          beamNumber={14}
-          lightColor="#a3beff"
-          speed={1.6}
-          noiseIntensity={1.35}
-          scale={0.22}
-          rotation={18}
+      <div className="fixed inset-0 z-0 h-screen w-screen overflow-hidden pointer-events-none">
+        <Prism
+          animationType="3drotate"
+          height={3.8}
+          baseWidth={5.8}
+          glow={1.35}
+          noise={0.22}
+          transparent
+          scale={2.9}
+          hueShift={0.45}
+          colorFrequency={1.15}
+          bloom={1.1}
+          timeScale={0.35}
         />
       </div>
-      <div className="fixed inset-0 z-0 pointer-events-none bg-white/68 dark:bg-slate-950/54" />
-      <div className="fixed inset-0 z-0 pointer-events-none bg-gradient-to-br from-slate-50/72 via-white/40 to-[#a3beff]/35 dark:from-slate-950/48 dark:via-slate-900/24 dark:to-[#a3beff]/18" />
+      <div className="fixed inset-0 z-0 pointer-events-none bg-white/62 dark:bg-slate-950/48" />
+      <div className="fixed inset-0 z-0 pointer-events-none bg-gradient-to-br from-slate-50/70 via-white/38 to-[#a3beff]/26 dark:from-slate-950/45 dark:via-slate-900/24 dark:to-[#a3beff]/16" />
       <Navbar />
       <main className="relative z-10">
         <Hero />
