@@ -8,7 +8,9 @@ import {
   Plus, 
   Minus, 
   ArrowUpRight, 
+  ChevronLeft,
   ChevronDown,
+  ChevronRight,
   Mail,
   MapPin,
   Phone,
@@ -278,6 +280,137 @@ const AboutStats = () => (
     </div>
   </section>
 );
+
+const JourneyTimeline = () => {
+  const journey = [
+    {
+      year: "2022",
+      title: "Started as a student builder",
+      body: "I began turning curiosity into real output: websites, graphic design work, and small systems that trained my eye for details and delivery.",
+      image: "/subprofile.jpg"
+    },
+    {
+      year: "2023",
+      title: "Joined the PNPh path",
+      body: "Passerelles Numériques Philippines and USJ-R shaped my foundation in software development, discipline, communication, and teamwork.",
+      image: "/profile.jpg"
+    },
+    {
+      year: "2024",
+      title: "Built through projects",
+      body: "Project-based learning became client-ready work: UI/UX, web apps, technical maintenance, and systems made for people to actually use.",
+      image: "/Web App.png"
+    },
+    {
+      year: "2025",
+      title: "Prepared for the workplace",
+      body: "I sharpened my portfolio, practiced professional communication, and kept delivering freelance and school projects with stronger standards.",
+      image: "/branding.jpg"
+    },
+    {
+      year: "2026",
+      title: "From student to work",
+      body: "Now I am growing as an Industrial Engineer Intern at Geidi IT, building AI automation, agentic workflows, and production-minded tools.",
+      image: "/kriti-project.png"
+    }
+  ];
+  const [activeIndex, setActiveIndex] = useState(journey.length - 1);
+  const active = journey[activeIndex];
+  const goToPrevious = () => setActiveIndex((activeIndex - 1 + journey.length) % journey.length);
+  const goToNext = () => setActiveIndex((activeIndex + 1) % journey.length);
+
+  return (
+    <section id="journey" className="scroll-mt-24 py-32 px-6 overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <FadeIn>
+          <div className="mb-16 md:mb-24">
+            <p className="text-sm font-bold uppercase tracking-widest text-accent-start mb-4">Philippines</p>
+            <div className="grid md:grid-cols-[0.9fr_1.1fr] gap-8 md:gap-16 items-end">
+              <h2 className="text-5xl md:text-7xl font-display font-bold tracking-tighter">
+                PNPh through<br />the years.
+              </h2>
+              <p className="text-lg md:text-xl text-ink/65 dark:text-slate-300 leading-relaxed max-w-2xl">
+                Passerelles Numériques Philippines. My journey as a student, builder, and young professional - from learning the craft to applying it at work.
+              </p>
+            </div>
+          </div>
+        </FadeIn>
+
+        <div className="relative">
+          <div className="hidden md:block absolute left-16 right-16 top-[7.35rem] border-t-2 border-dashed border-black/25 dark:border-white/25" />
+
+          <div className="flex items-center justify-between gap-2 md:gap-4 mb-10 pr-14 md:pr-0">
+            <button
+              type="button"
+              onClick={goToPrevious}
+              className="relative z-10 w-10 h-10 md:w-12 md:h-12 rounded-full border border-black/20 dark:border-white/20 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md flex items-center justify-center hover:border-accent-start hover:text-accent-start transition-colors"
+              aria-label="Previous journey milestone"
+            >
+              <ChevronLeft size={22} />
+            </button>
+
+            <div className="relative z-10 flex-1 grid grid-cols-5 gap-1 md:gap-6">
+              {journey.map((item, index) => (
+                <button
+                  key={item.year}
+                  type="button"
+                  onClick={() => setActiveIndex(index)}
+                  className={`group flex flex-col items-center gap-3 transition-opacity ${index === activeIndex ? 'opacity-100' : 'opacity-45 hover:opacity-80'}`}
+                  aria-label={`Show ${item.year} journey milestone`}
+                >
+                  <span className={`text-sm md:text-4xl font-display font-bold transition-colors ${index === activeIndex ? 'text-ink dark:text-white' : 'text-ink/50 dark:text-white/50'}`}>
+                    {item.year}
+                  </span>
+                  <span className={`w-5 h-5 rounded-full border-4 transition-colors ${index === activeIndex ? 'bg-accent-start border-white dark:border-slate-950 shadow-lg shadow-accent-start/30' : 'bg-white dark:bg-slate-800 border-accent-start/70'}`} />
+                </button>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={goToNext}
+              className="relative z-10 w-10 h-10 md:w-12 md:h-12 rounded-full border border-black/20 dark:border-white/20 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md flex items-center justify-center hover:border-accent-start hover:text-accent-start transition-colors"
+              aria-label="Next journey milestone"
+            >
+              <ChevronRight size={22} />
+            </button>
+          </div>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active.year}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -24 }}
+              transition={{ duration: 0.45, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="grid md:grid-cols-[0.9fr_1.1fr] gap-10 md:gap-16 items-center"
+            >
+              <div className="md:text-right">
+                <p className="text-sm font-bold uppercase tracking-widest text-accent-start mb-3">My journey</p>
+                <h3 className="text-3xl md:text-5xl font-display font-bold tracking-tight mb-5">{active.title}</h3>
+                <p className="text-lg text-ink/65 dark:text-slate-300 leading-relaxed md:ml-auto max-w-xl">
+                  {active.body}
+                </p>
+              </div>
+
+              <div className="relative flex justify-center md:justify-start">
+                <div className="absolute top-1/2 left-1/2 md:left-28 -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-80 md:h-80 rounded-full bg-accent-start/10 blur-3xl" />
+                <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-8 border-white/80 dark:border-slate-800/80 shadow-2xl bg-white/40 dark:bg-slate-900/40">
+                  <img
+                    src={active.image}
+                    alt={`${active.year} ${active.title}`}
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const Portfolio = () => {
   const projects = [
@@ -685,6 +818,11 @@ export default function PortfolioPage() {
     }
   }, [isDarkMode]);
 
+  useEffect(() => {
+    const target = window.location.hash ? document.querySelector(window.location.hash) : null;
+    if (target) requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }));
+  }, []);
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-black text-ink dark:text-white transition-colors duration-500 selection:bg-accent-start selection:text-white">
       <div className="fixed inset-0 z-0 h-screen w-screen overflow-hidden pointer-events-none">
@@ -709,6 +847,7 @@ export default function PortfolioPage() {
         <Hero />
         <ServiceAccordion />
         <AboutStats />
+        <JourneyTimeline />
         <Portfolio />
         <Testimonials />
         <SkillsTicker />
