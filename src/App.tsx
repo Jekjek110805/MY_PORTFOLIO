@@ -414,10 +414,10 @@ const JourneyTimeline = () => {
 
 const Portfolio = () => {
   const projects = [
-    { title: "Mockup Design", category: "Mockup", img: "/branding.jpg" },
-    { title: "Book Design", category: "Editorial", img: "/books.jpg" },
-    { title: "Kriti Project", category: "Brand Identity", img: "/kriti-project.png" },
-    { title: "Application UI", category: "Product", img: "/Web App.png" }
+    { title: "Paknaan VMS System", category: "Disaster System", img: "/VMS.png" },
+    { title: "PNPh Tourna Website", category: "Tournament Website", img: "/TOUR.png" },
+    { title: "MAAI WebApp Project", category: "SEO AI Agent", img: "/laptop.jpeg" },
+    { title: "LostLink WebApp Project", category: "Lost and Found Management", img: "/Web App.png" }
   ];
 
   return (
