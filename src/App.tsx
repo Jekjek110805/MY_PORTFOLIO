@@ -286,32 +286,32 @@ const JourneyTimeline = () => {
     {
       year: "2022",
       title: "Started as a student builder",
-      body: "I began turning curiosity into real output: websites, graphic design work, and small systems that trained my eye for details and delivery.",
-      image: "/subprofile.jpg"
+      body: "I began turning curiosity into real output: websites, graphic design work, and small systems that trained my eye for details and delivery at AMA ACLC College of Mandaue.",
+      image: "/ACLC.jpg"
     },
     {
       year: "2023",
-      title: "Joined the PNPh path",
-      body: "Passerelles Numériques Philippines and USJ-R shaped my foundation in software development, discipline, communication, and teamwork.",
-      image: "/profile.jpg"
+      title: "Graduated at AMA ",
+      body: "Afterall, I Graduate at AMA ACLC College of Mandaue as Visual Graphic Design and Animation, but instead of continue to work, I continue my studies;",
+      image: "/CERTS.jpg"
     },
     {
       year: "2024",
-      title: "Built through projects",
-      body: "Project-based learning became client-ready work: UI/UX, web apps, technical maintenance, and systems made for people to actually use.",
-      image: "/Web App.png"
+      title: "Joined PNPh",
+      body: "I joined PNPh become their student scholar, Taking 2.5yrs of professional training at USJR. While focusing to study Software Development as an Associate of Computer Technology.",
+      image: "/PN.png"
     },
     {
       year: "2025",
       title: "Prepared for the workplace",
       body: "I sharpened my portfolio, practiced professional communication, and kept delivering freelance and school projects with stronger standards.",
-      image: "/branding.jpg"
+      image: "/JP.jpg"
     },
     {
       year: "2026",
       title: "From student to work",
       body: "Now I am growing as an Industrial Engineer Intern at Geidi IT, building AI automation, agentic workflows, and production-minded tools.",
-      image: "/kriti-project.png"
+      image: "/GEIDI.jpg"
     }
   ];
   const [activeIndex, setActiveIndex] = useState(journey.length - 1);
@@ -327,10 +327,10 @@ const JourneyTimeline = () => {
             <p className="text-sm font-bold uppercase tracking-widest text-accent-start mb-4">Philippines</p>
             <div className="grid md:grid-cols-[0.9fr_1.1fr] gap-8 md:gap-16 items-end">
               <h2 className="text-5xl md:text-7xl font-display font-bold tracking-tighter">
-                PNPh through<br />the years.
+                Tech Journey<br />the years.
               </h2>
               <p className="text-lg md:text-xl text-ink/65 dark:text-slate-300 leading-relaxed max-w-2xl">
-                Passerelles Numériques Philippines. My journey as a student, builder, and young professional - from learning the craft to applying it at work.
+              My journey as a student, builder, and young professional - from learning the craft to applying it at work.
               </p>
             </div>
           </div>
@@ -713,7 +713,7 @@ const Contact = () => (
           <div className="absolute inset-0 bg-accent-start blur-3xl opacity-20 rounded-full" />
           <div className="relative aspect-square rounded-3xl md:rounded-[3rem] overflow-hidden border-4 md:border-8 border-white/50 dark:border-slate-800/50 shadow-2xl transition-colors">
             <img 
-              src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTZ5ZG8wMzBsYnQ5MHdwODl0MzdvYzVrdmVuNnZ1N253ejE4Y2U5MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qnC0HHjoN5kSJyq2Zc/giphy.gif" 
+              src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NW0zeGhkM3I3MGJmMzczYXN1bHUxa2ZzMmRnanhxMm5pN3gxZmV3cyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/J2Cn43dJvkMjn6xICf/giphy.gif" 
               alt="Contact" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
