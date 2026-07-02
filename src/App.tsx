@@ -458,7 +458,25 @@ const SkillsTicker = () => {
     { name: "PHOTOSHOP", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg" },
     { name: "AFFINITY", icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHJ4PSI0IiBmaWxsPSIjMUI3MkI4Ii8+PHRleHQgeD0iNTAlIiB5PSI1OCUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0id2hpdGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5BJjwvdGV4dD48L3N2Zz4=" },
     { name: "ILLUSTRATOR", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-original.svg" },
-    { name: "HERMES AGENT", icon: "https://hermes-agent.nousresearch.com/img/desktop/badge.webp" }
+    { name: "HERMES AGENT", icon: "https://hermes-agent.nousresearch.com/img/desktop/badge.webp" },
+    { name: "PYTHON", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+    { name: "OBSIDIAN", icon: "https://cdn.simpleicons.org/obsidian/7C3AED" },
+    { name: "SUPABASE", icon: "https://cdn.simpleicons.org/supabase/3ECF8E" },
+    { name: "JAVASCRIPT", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+    { name: "C++", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" },
+    { name: "C", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" },
+    { name: "CLAUDE", icon: "https://cdn.simpleicons.org/claude/D97757" },
+    { name: "OPENAI", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg" },
+    { name: "APACHE LOUNGE", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" },
+    { name: "VUE", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
+    { name: "GITHUB", icon: "https://cdn.simpleicons.org/github/181717" },
+    { name: "GITLAB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" },
+    { name: "GIT", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+    { name: "UBUNTU LINUX", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-original.svg" },
+    { name: "FASTAPI", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
+    { name: "COMPOSIO", icon: "https://composio.dev/favicon.ico" },
+    { name: "NOTEPAD++", icon: "https://cdn.simpleicons.org/notepadplusplus/90E59A" },
+    { name: "SIXTH AI", icon: "https://trysixth.com/favicon.ico" }
   ];
 
   return (
@@ -466,7 +484,7 @@ const SkillsTicker = () => {
       <motion.div 
         className="flex items-center w-max"
         animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 40, ease: "linear", repeat: Infinity }}
+        transition={{ duration: 80, ease: "linear", repeat: Infinity }}
       >
         {[...skills, ...skills].map((skill, index) => (
           <div 
