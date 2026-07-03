@@ -287,7 +287,7 @@ const JourneyTimeline = () => {
       year: "2022",
       title: "Started as a student builder",
       body: "I began turning curiosity into real output: websites, graphic design work, and small systems that trained my eye for details and delivery at AMA ACLC College of Mandaue.",
-      image: "/ACLC.jpg"
+      image: "/GRAP.jpg"
     },
     {
       year: "2023",
