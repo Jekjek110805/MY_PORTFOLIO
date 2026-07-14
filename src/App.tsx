@@ -53,7 +53,13 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 px-6 transition-all duration-500 flex justify-between items-center ${isScrolled ? 'py-4 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl shadow-sm border-b border-black/5 dark:border-white/5' : 'py-6 bg-transparent'}`}>
-      <div className="text-2xl font-display font-bold tracking-tighter">ME_PROFILE.</div>
+      <a href="#" className="flex items-center">
+        <img
+          src="/me-profile-logo.png"
+          alt="ME_Profile logo"
+          className="h-10 md:h-12 w-auto object-contain"
+        />
+      </a>
       <div className="hidden md:flex items-center gap-8 font-medium">
         <a href="#services" className="hover:text-accent-start transition-colors">Services</a>
         <a href="#portfolio" className="hover:text-accent-start transition-colors">Portfolio</a>
@@ -787,7 +793,11 @@ const Contact = () => (
 const Footer = () => (
   <footer className="py-12 px-6 bg-ink dark:bg-black text-white transition-colors duration-500">
     <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-      <div className="text-2xl font-display font-bold tracking-tighter">ME_PROFILE.</div>
+      <img
+        src="/me-profile-logo.png"
+        alt="ME_Profile logo"
+        className="h-12 w-auto object-contain bg-white rounded-lg p-1.5"
+      />
       <div className="flex gap-8 text-white/60 text-sm font-medium">
         <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
         <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
